@@ -1,6 +1,8 @@
 package com.store.cosmetic.controller;
 
+import com.store.cosmetic.dto.DefaultDataDTO;
 import com.store.cosmetic.dto.ItemDTO;
+import com.store.cosmetic.dto.NewItemDTO;
 import com.store.cosmetic.help.Result;
 import com.store.cosmetic.help.StatusCode;
 import com.store.cosmetic.services.ItemService;
@@ -19,11 +21,16 @@ public class ItemAPI {
         List<ItemDTO> listAllItem = itemService.getAllItems();
         return new Result(true, StatusCode.SUCCESS, "Get all items success",listAllItem);
     }
+    @GetMapping("/getDefaultData")
+    private Result getDefaultData(){
+        DefaultDataDTO defaultData = itemService.getDefaultData();
+        return new Result(true, StatusCode.SUCCESS, "Get default data success",defaultData);
+    }
 
     @PostMapping("/item")
-    private Result addNewItem(@RequestBody ItemDTO itemDTO){
-        ItemDTO savedItem = itemService.addNewItem(itemDTO);
-        return new Result(true, StatusCode.SUCCESS, "Add items success");
+    private Result addNewItem(@RequestBody NewItemDTO newItemDTO){
+        ItemDTO savedItem = itemService.addNewItem(newItemDTO);
+        return new Result(true, StatusCode.SUCCESS, "Add items success",savedItem);
     }
 
 }

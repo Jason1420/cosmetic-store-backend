@@ -1,7 +1,5 @@
 package com.store.cosmetic.entity;
 
-import com.store.cosmetic.help.ItemBrand;
-import com.store.cosmetic.help.ItemType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,15 +16,28 @@ public class ItemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private ItemBrand brand;
-    private ItemType type;
+    @ManyToOne
+    @JoinColumn(name = "brand", referencedColumnName = "name")
+    private BrandEntity brand;
+    @ManyToOne
+    @JoinColumn(name = "type", referencedColumnName = "name")
+    private TypeEntity type;
+
+
     private Double price;
+    @Column(columnDefinition = "BLOB")
     @Lob
-    private Blob image;
+    private byte[] image;
+    private String mimeData;
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    public ItemEntity(Long id, String name, ItemBrand brand, ItemType type,
-                      Double price, Blob image, String description) {
+    @ManyToOne
+    @JoinColumn(name = "status", referencedColumnName = "name")
+    private StatusEntity status;
+
+    public ItemEntity(Long id, String name, BrandEntity brand, TypeEntity type,
+                      Double price, byte[] image, String description, StatusEntity status) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -34,5 +45,19 @@ public class ItemEntity {
         this.price = price;
         this.image = image;
         this.description = description;
+        this.status = status;
+    }
+
+    public ItemEntity(String name, BrandEntity brand, TypeEntity type,
+                      Double price, byte[] image, String mimeData, String description,
+                      StatusEntity status) {
+        this.name = name;
+        this.brand = brand;
+        this.type = type;
+        this.price = price;
+        this.image = image;
+        this.mimeData = mimeData;
+        this.description = description;
+        this.status = status;
     }
 }

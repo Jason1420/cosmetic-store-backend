@@ -12,13 +12,12 @@ import java.sql.Blob;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemDTO {
-    private Long id;
+public class NewItemDTO {
     private String name;
     private String brand;
     private String type;
+    private String status;
     private Double price;
     private String image;
     private String description;
-    private String status;
 }
