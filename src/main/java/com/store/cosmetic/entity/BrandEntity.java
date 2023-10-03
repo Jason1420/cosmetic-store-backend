@@ -19,4 +19,5 @@ public class BrandEntity {
     @OneToMany(mappedBy = "brand")
     @JsonIgnore
     private Set<ItemEntity> items;
+
 }

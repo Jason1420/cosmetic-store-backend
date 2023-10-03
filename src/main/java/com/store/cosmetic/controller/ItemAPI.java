@@ -27,6 +27,12 @@ public class ItemAPI {
         return new Result(true, StatusCode.SUCCESS, "Get default data success",defaultData);
     }
 
+    @GetMapping("/getOneItem/{id}")
+    private Result getOneItem(@PathVariable("id") Long id){
+        ItemDTO detailItem = itemService.getItemById(id);
+        return new Result(true, StatusCode.SUCCESS, "Get one item success",detailItem);
+    }
+
     @PostMapping("/item")
     private Result addNewItem(@RequestBody NewItemDTO newItemDTO){
         ItemDTO savedItem = itemService.addNewItem(newItemDTO);

@@ -55,4 +55,11 @@ public class ItemService {
         List<StatusEntity> listStatus = statusRepository.findAll();
         return new DefaultDataDTO(listBrand,listType,listStatus);
     }
+
+
+    public ItemDTO getItemById(Long id) {
+        ItemEntity itemEntity = itemRepository.findOneById(id);
+        ItemDTO itemDTO = itemConverter.toDTO(itemEntity);
+        return itemDTO;
+    }
 }
