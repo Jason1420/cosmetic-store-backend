@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/cosmetic_store?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
+    url: jdbc:mysql://localhost:3306/cosmetic_store?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbc CompliantTruncation=false
     username: root
     password:
   jpa:

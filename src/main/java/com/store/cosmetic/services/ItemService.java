@@ -1,6 +1,7 @@
 package com.store.cosmetic.services;
 
 import com.store.cosmetic.converter.ItemConverter;
+import com.store.cosmetic.dto.BrandDTO;
 import com.store.cosmetic.dto.DefaultDataDTO;
 import com.store.cosmetic.dto.ItemDTO;
 import com.store.cosmetic.dto.NewItemDTO;
@@ -61,5 +62,24 @@ public class ItemService {
         ItemEntity itemEntity = itemRepository.findOneById(id);
         ItemDTO itemDTO = itemConverter.toDTO(itemEntity);
         return itemDTO;
+    }
+
+//    public List<ItemDTO> searchByBrand(List<String> brands) {
+//
+//        List<ItemEntity> listItem = itemRepository.findByBrandContainingIgnoreCase(brands);
+//        List<ItemDTO> returnDTO = listItem.stream().map(itemConverter::toDTO).collect(Collectors.toList());;
+//        return returnDTO;
+//    }
+
+    public List<ItemDTO> searchByTypeAndBrand(Long typeId, List<String> brands) {
+        List<ItemEntity> listItem = itemRepository.findByTypeAndBrandContainingIgnoreCase(typeId, brands);
+        List<ItemDTO> returnDTO = listItem.stream().map(itemConverter::toDTO).collect(Collectors.toList());;
+        return returnDTO;
+    }
+
+    public List<ItemDTO> searchByTypeId(Long typeId) {
+        List<ItemEntity> listItem = itemRepository.findAllByTypeId(typeId);
+        List<ItemDTO> returnDTO = listItem.stream().map(itemConverter::toDTO).collect(Collectors.toList());;
+        return returnDTO;
     }
 }
