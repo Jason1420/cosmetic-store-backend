@@ -1,6 +1,5 @@
 package com.store.cosmetic.services;
 
-import com.store.cosmetic.entity.BrandEntity;
 import com.store.cosmetic.entity.TypeEntity;
 import com.store.cosmetic.repository.TypeRepository;
 import lombok.AllArgsConstructor;
@@ -32,6 +31,8 @@ public class TypeService {
     }
 
     public List<TypeEntity> getAllType() {
-            return typeRepository.findAll();
+        return typeRepository.findAll();
     }
+
+
 }

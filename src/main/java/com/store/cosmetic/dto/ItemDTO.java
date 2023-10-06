@@ -1,13 +1,8 @@
 package com.store.cosmetic.dto;
 
-import com.store.cosmetic.help.ItemBrand;
-import com.store.cosmetic.help.ItemType;
-import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.sql.Blob;
 
 @Data
 @NoArgsConstructor

@@ -5,7 +5,6 @@ import com.store.cosmetic.entity.TypeEntity;
 import com.store.cosmetic.help.Result;
 import com.store.cosmetic.help.StatusCode;
 import com.store.cosmetic.services.BrandService;
-import com.store.cosmetic.services.ItemService;
 import com.store.cosmetic.services.TypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,13 +22,17 @@ public class DefaultDataAPI {
     private final TypeService typeService;
 
     @GetMapping("/getAllBrand")
-    private Result getDefaultBrandData(){
+    private Result getDefaultBrandData() {
         List<BrandEntity> allBrand = brandService.getAllBrand();
-        return new Result(true, StatusCode.SUCCESS, "Get all brands success",allBrand);
+        return new Result(true, StatusCode.SUCCESS, "Get all brands success", allBrand);
     }
+
     @GetMapping("/getAllType")
-    private Result getDefaultTypeData(){
+    private Result getDefaultTypeData() {
         List<TypeEntity> allType = typeService.getAllType();
-        return new Result(true, StatusCode.SUCCESS, "Get all types success",allType);
+        return new Result(true, StatusCode.SUCCESS, "Get all types success", allType);
     }
+
+
+
 }

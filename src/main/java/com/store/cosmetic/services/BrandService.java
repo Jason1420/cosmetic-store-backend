@@ -20,7 +20,7 @@ public class BrandService {
         return brandRepository.findAll(PageRequest.of(offset - 1, size));
     }
 
-    public List<BrandEntity> getAllBrand(){
+    public List<BrandEntity> getAllBrand() {
         return brandRepository.findAll();
     }
 
