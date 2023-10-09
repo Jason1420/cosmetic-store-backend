@@ -28,9 +28,9 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "customer")
     @JsonIgnore
-    private Set<ItemEntity> billNumber;
+    private Set<InvoiceEntity> invoices;
 
     public UserEntity(String username, String password) {
         this.username = username;

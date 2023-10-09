@@ -2,8 +2,8 @@ package com.store.cosmetic.controller;
 
 import com.store.cosmetic.entity.BrandEntity;
 import com.store.cosmetic.entity.TypeEntity;
-import com.store.cosmetic.help.Result;
-import com.store.cosmetic.help.StatusCode;
+import com.store.cosmetic.exception.helper.Result;
+import com.store.cosmetic.exception.helper.StatusCode;
 import com.store.cosmetic.services.BrandService;
 import com.store.cosmetic.services.TypeService;
 import lombok.RequiredArgsConstructor;

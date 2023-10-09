@@ -1,8 +1,11 @@
 package com.store.cosmetic.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 
 @Entity
@@ -33,7 +36,9 @@ public class ItemEntity {
     @ManyToOne
     @JoinColumn(name = "status", referencedColumnName = "name")
     private StatusEntity status;
-
+    @OneToMany(mappedBy = "item")
+    @JsonIgnore
+    private Set<InvoiceItemEntity> invoiceItems;
     public ItemEntity(Long id, String name, BrandEntity brand, TypeEntity type,
                       Double price, byte[] image, String description, StatusEntity status) {
         this.id = id;

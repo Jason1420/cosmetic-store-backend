@@ -2,8 +2,8 @@ package com.store.cosmetic.controller;
 
 import com.store.cosmetic.dto.login.AuthResponseDTO;
 import com.store.cosmetic.dto.login.LoginDTO;
-import com.store.cosmetic.help.Result;
-import com.store.cosmetic.help.StatusCode;
+import com.store.cosmetic.exception.helper.Result;
+import com.store.cosmetic.exception.helper.StatusCode;
 import com.store.cosmetic.jwt.jwt.JwtGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,4 +1,4 @@
-package com.store.cosmetic.help;
+package com.store.cosmetic.exception.helper;
 
 public class StatusCode {
 
