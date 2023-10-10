@@ -1,6 +1,7 @@
 package com.store.cosmetic.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.store.cosmetic.entity.invoice.Invoice;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,7 @@ public class UserEntity {
     private Set<Role> roles;
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
-    private Set<InvoiceEntity> invoices;
+    private Set<Invoice> invoices;
 
     public UserEntity(String username, String password) {
         this.username = username;

@@ -1,6 +1,6 @@
 package com.store.cosmetic.services;
 
-import com.store.cosmetic.entity.InvoiceItemEntity;
+import com.store.cosmetic.entity.invoice.InvoiceItem;
 import com.store.cosmetic.repository.InvoiceItemRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,21 +16,21 @@ import java.util.List;
 public class InvoiceItemService {
     private final InvoiceItemRepository invoiceItemRepository;
 
-    public Page<InvoiceItemEntity> showAllInvoiceItemPagination(int offset, int size) {
+    public Page<InvoiceItem> showAllInvoiceItemPagination(int offset, int size) {
         return invoiceItemRepository.findAll(PageRequest.of(offset - 1, size));
     }
 
-    public List<InvoiceItemEntity> getAllInvoiceItem() {
+    public List<InvoiceItem> getAllInvoiceItem() {
         return invoiceItemRepository.findAll();
     }
 
-    public void addNew(InvoiceItemEntity newInvoiceItemEntity) {
-        invoiceItemRepository.save(newInvoiceItemEntity);
+    public void addNew(InvoiceItem newInvoiceItem) {
+        invoiceItemRepository.save(newInvoiceItem);
     }
 
-    public void update(Long id, InvoiceItemEntity invoiceItemEntity) {
-        InvoiceItemEntity departmentOld = invoiceItemRepository.findOneById(id);
-        invoiceItemEntity.setId(departmentOld.getId());
+    public void update(Long id, InvoiceItem invoiceItemEntity) {
+        InvoiceItem invoiceItemOld = invoiceItemRepository.findOneById(id);
+        invoiceItemEntity.setId(invoiceItemOld.getId());
         invoiceItemRepository.save(invoiceItemEntity);
     }
 }
