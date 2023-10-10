@@ -1,6 +1,8 @@
 package com.store.cosmetic.services;
 
-import com.store.cosmetic.entity.InvoiceEntity;
+import com.store.cosmetic.converter.InvoiceConverter;
+import com.store.cosmetic.dto.invoice.InvoiceDTO;
+import com.store.cosmetic.entity.invoice.Invoice;
 import com.store.cosmetic.repository.InvoiceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,22 +17,31 @@ import java.util.List;
 @AllArgsConstructor
 public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
+    private final InvoiceConverter invoiceConverter;
 
-    public Page<InvoiceEntity> showAllInvoicePagination(int offset, int size) {
+    public Page<Invoice> showAllInvoicePagination(int offset, int size) {
         return invoiceRepository.findAll(PageRequest.of(offset - 1, size));
     }
 
-    public List<InvoiceEntity> getAllInvoice() {
+    public List<Invoice> getAllInvoice() {
         return invoiceRepository.findAll();
     }
 
-    public void addNew(InvoiceEntity newInvoiceEntity) {
-        invoiceRepository.save(newInvoiceEntity);
+    public void addNew(Invoice newInvoice) {
+        invoiceRepository.save(newInvoice);
     }
 
-    public void update(Long id, InvoiceEntity invoiceEntity) {
-        InvoiceEntity departmentOld = invoiceRepository.findOneById(id);
-        invoiceEntity.setId(departmentOld.getId());
+    public void update(Long id, Invoice invoiceEntity) {
+        Invoice invoiceOld = invoiceRepository.findOneById(id);
+        invoiceEntity.setId(invoiceOld.getId());
         invoiceRepository.save(invoiceEntity);
+    }
+
+    public InvoiceDTO payment(InvoiceDTO invoiceDTO) {
+        Invoice invoice = invoiceConverter.toEntity(invoiceDTO);
+        Invoice savedInvoice = invoiceRepository.save(invoice);
+        InvoiceDTO returnDTO = invoiceConverter.toDTO(savedInvoice);
+    return returnDTO;
+
     }
 }
