@@ -19,4 +19,11 @@ public class Customer {
     private String address;
     @OneToOne(cascade = CascadeType.ALL)
     private UserEntity user;
+
+    public Customer(String name, String email, String phoneNumber, String address) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
 }
