@@ -3,12 +3,15 @@ package com.store.cosmetic.converter;
 import com.store.cosmetic.dto.CustomerDTO;
 import com.store.cosmetic.dto.NewCustomerInfoDTO;
 import com.store.cosmetic.entity.Customer;
+import com.store.cosmetic.entity.UserEntity;
+import com.store.cosmetic.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class CustomerConverter {
+    private final UserRepository userRepository;
 
     public CustomerDTO toDTO(Customer customerEntity) {
         if (customerEntity != null) {
@@ -21,11 +24,19 @@ public class CustomerConverter {
     }
 
     public Customer toNewInfo(NewCustomerInfoDTO newCustomerInfoDTO, Customer oldCustomerInfo) {
-        oldCustomerInfo.setName(newCustomerInfoDTO.getFullName());
-        oldCustomerInfo.setAddress(newCustomerInfoDTO.getAddress());
-        oldCustomerInfo.setEmail(newCustomerInfoDTO.getEmail());
-        oldCustomerInfo.setPhoneNumber(newCustomerInfoDTO.getPhoneNumber());
-        return oldCustomerInfo;
+        if (oldCustomerInfo != null) {
+            oldCustomerInfo.setName(newCustomerInfoDTO.getFullName());
+            oldCustomerInfo.setAddress(newCustomerInfoDTO.getAddress());
+            oldCustomerInfo.setEmail(newCustomerInfoDTO.getEmail());
+            oldCustomerInfo.setPhoneNumber(newCustomerInfoDTO.getPhoneNumber());
+            return oldCustomerInfo;
+        }
+        UserEntity oldUser = userRepository.findOneById(newCustomerInfoDTO.getUserId());
+        return new Customer(newCustomerInfoDTO.getFullName(),
+                newCustomerInfoDTO.getEmail(),
+                newCustomerInfoDTO.getPhoneNumber(),
+                newCustomerInfoDTO.getAddress(),
+                oldUser);
     }
 
 }

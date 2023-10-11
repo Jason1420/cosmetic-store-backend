@@ -23,6 +23,7 @@ public class Invoice {
 
 
     @OneToOne(cascade = CascadeType.ALL)
+
     private CartItem cartItem;
 
     @ManyToOne

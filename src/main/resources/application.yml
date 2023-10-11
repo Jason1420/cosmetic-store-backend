@@ -5,6 +5,8 @@ spring:
     url: jdbc:mysql://localhost:3306/cosmetic_store?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbc CompliantTruncation=false
     username: root
     password:
+
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -14,3 +16,20 @@ spring:
         format_sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
+    #  Email config
+mailServer:
+  host: smtp.gmail.com
+  port: 587
+  username: cosmetic_store@gmail.com
+  password: 123456
+  protocol: smtp
+  isSSL: false
+  #spring.mailServer.isSSL=false
+mail:
+  properties:
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+          required: true

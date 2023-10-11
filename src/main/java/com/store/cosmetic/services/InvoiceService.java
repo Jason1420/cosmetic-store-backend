@@ -2,6 +2,7 @@ package com.store.cosmetic.services;
 
 import com.store.cosmetic.converter.InvoiceConverter;
 import com.store.cosmetic.dto.invoice.InvoiceDTO;
+import com.store.cosmetic.email.EmailServiceImp;
 import com.store.cosmetic.entity.invoice.Invoice;
 import com.store.cosmetic.repository.InvoiceRepository;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.List;
 public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final InvoiceConverter invoiceConverter;
+    private final EmailServiceImp emailService;
 
     public Page<Invoice> showAllInvoicePagination(int offset, int size) {
         return invoiceRepository.findAll(PageRequest.of(offset - 1, size));
@@ -41,7 +43,8 @@ public class InvoiceService {
         Invoice invoice = invoiceConverter.toEntity(invoiceDTO);
         Invoice savedInvoice = invoiceRepository.save(invoice);
         InvoiceDTO returnDTO = invoiceConverter.toDTO(savedInvoice);
-    return returnDTO;
+        emailService.generateEmail(savedInvoice, "abcs");
+        return returnDTO;
 
     }
 }

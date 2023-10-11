@@ -1,5 +1,6 @@
 package com.store.cosmetic.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Customer {
     private String phoneNumber;
     private String address;
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private UserEntity user;
 
     public Customer(String name, String email, String phoneNumber, String address) {
@@ -25,5 +27,13 @@ public class Customer {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+    }
+
+    public Customer(String name, String email, String phoneNumber, String address, UserEntity user) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.user = user;
     }
 }
