@@ -14,8 +14,10 @@ public class UserDTO {
     private String username;
     private String password;
     private List<String> roles;
+    private CustomerDTO customer;
 
-    public UserDTO( String username, List<String> roles) {
+    public UserDTO( Long id,String username, List<String> roles) {
+        this.id = id;
         this.username = username;
         this.roles = roles;
     }

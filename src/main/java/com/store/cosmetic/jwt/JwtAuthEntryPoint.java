@@ -1,4 +1,4 @@
-package com.store.cosmetic.jwt.jwt;
+package com.store.cosmetic.jwt;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

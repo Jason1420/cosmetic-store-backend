@@ -22,7 +22,8 @@ public class UserConverter {
     }
 
     public UserDTO toDtoAfterLogin(UserEntity userEntity) {
-        return new UserDTO(userEntity.getUsername(),
+        return new UserDTO(userEntity.getId(),
+                userEntity.getUsername(),
                 userEntity.getRoles().stream().map(role -> {
                     return role.getName();
                 }).collect(Collectors.toList())

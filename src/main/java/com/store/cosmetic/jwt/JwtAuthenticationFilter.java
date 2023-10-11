@@ -1,4 +1,4 @@
-package com.store.cosmetic.jwt.jwt;
+package com.store.cosmetic.jwt;
 
 import com.store.cosmetic.services.CustomUserDetailServiceImpl;
 import jakarta.servlet.FilterChain;

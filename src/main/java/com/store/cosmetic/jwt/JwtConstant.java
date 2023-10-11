@@ -1,4 +1,4 @@
-package com.store.cosmetic.jwt.jwt;
+package com.store.cosmetic.jwt;
 
 public class JwtConstant {
     public static final long JWT_EXPIRATION = 20 * 1000 ; // 20s

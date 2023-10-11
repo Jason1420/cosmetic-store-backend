@@ -1,9 +1,12 @@
-package com.store.cosmetic.jwt.jwt;
+package com.store.cosmetic.jwt;
 
 
+import com.store.cosmetic.converter.CustomerConverter;
 import com.store.cosmetic.converter.UserConverter;
 import com.store.cosmetic.dto.login.AuthResponseDTO;
+import com.store.cosmetic.entity.Customer;
 import com.store.cosmetic.entity.UserEntity;
+import com.store.cosmetic.repository.CustomerRepository;
 import com.store.cosmetic.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -26,6 +29,8 @@ import java.util.Map;
 public class JwtGenerator {
     private final UserRepository userRepository;
     private final UserConverter userConverter;
+    private final CustomerRepository customerRepository;
+    private final CustomerConverter customerConverter;
     private final HttpServletResponse httpServletResponse;
 
     public AuthResponseDTO generateToken(Authentication authentication) {
@@ -50,7 +55,9 @@ public class JwtGenerator {
         cookie.setMaxAge(60 * 60 * 24);
         cookie.setHttpOnly(true);
         httpServletResponse.addCookie(cookie);
-        return new AuthResponseDTO(accessToken, userConverter.toDtoAfterLogin((entity)));
+        Customer customerInfo = customerRepository.findOneByUserId(entity.getId()) ;
+        return new AuthResponseDTO(accessToken, userConverter.toDtoAfterLogin((entity))
+                ,customerConverter.toDTO(customerInfo));
     }
 
     public AuthResponseDTO refreshToken(String refreshToken) {
@@ -65,7 +72,9 @@ public class JwtGenerator {
                     .setExpiration(expiredDate)
                     .signWith(getSignInKey(JwtConstant.JWT_SECRET), SignatureAlgorithm.HS256)
                     .compact();
-            return new AuthResponseDTO(accessToken, userConverter.toDtoAfterLogin((entity)));
+            Customer customerInfo = customerRepository.findOneByUserId(entity.getId()) ;
+            return new AuthResponseDTO(accessToken, userConverter.toDtoAfterLogin((entity)),
+                    customerConverter.toDTO(customerInfo));
         } else {
             throw new AuthenticationCredentialsNotFoundException("Refresh token was expired or incorrect");
         }

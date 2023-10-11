@@ -1,9 +1,9 @@
 package com.store.cosmetic.config;
 
 
-import com.store.cosmetic.jwt.jwt.JwtAuthEntryPoint;
-import com.store.cosmetic.jwt.jwt.JwtAuthHandler;
-import com.store.cosmetic.jwt.jwt.JwtAuthenticationFilter;
+import com.store.cosmetic.jwt.JwtAuthEntryPoint;
+import com.store.cosmetic.jwt.JwtAuthHandler;
+import com.store.cosmetic.jwt.JwtAuthenticationFilter;
 import com.store.cosmetic.services.CustomUserDetailServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
