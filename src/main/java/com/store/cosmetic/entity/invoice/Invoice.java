@@ -20,10 +20,9 @@ public class Invoice {
     private String customerPhoneNumber;
     private String customerAddress;
     private Boolean status;
-
+    private String invoiceStatus;
 
     @OneToOne(cascade = CascadeType.ALL)
-
     private CartItem cartItem;
 
     @ManyToOne
@@ -32,7 +31,7 @@ public class Invoice {
 
     public Invoice(String code, String customerName, String customerEmail,
                    String customerPhoneNumber, String customerAddress,
-                   Boolean status, CartItem cartItem, UserEntity customer) {
+                   Boolean status, CartItem cartItem, UserEntity customer, String invoiceStatus) {
         this.code = code;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
@@ -41,5 +40,6 @@ public class Invoice {
         this.status = status;
         this.cartItem = cartItem;
         this.customer = customer;
+        this.invoiceStatus = invoiceStatus;
     }
 }

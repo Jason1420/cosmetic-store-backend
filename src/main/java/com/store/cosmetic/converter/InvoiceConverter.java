@@ -19,33 +19,6 @@ public class InvoiceConverter {
 
     private final CartItemConverter cartItemConverter;
     private final UserRepository userRepository;
-    public Invoice toEntity (InvoiceDTO invoiceDTO){
-        return new Invoice(
-                generateInvoiceCode(),
-                invoiceDTO.getCustomerName(),
-                invoiceDTO.getCustomerEmail(),
-                invoiceDTO.getCustomerPhoneNumber(),
-                invoiceDTO.getCustomerAddress(),
-                true,
-                cartItemConverter.toEntity(invoiceDTO.getCartItem()),
-                userRepository.findOneByUsername(invoiceDTO.getCustomerUsername())
-        );
-    }
-    public InvoiceDTO toDTO (Invoice invoiceEntity){
-        return new InvoiceDTO(
-                invoiceEntity.getId(),
-                invoiceEntity.getCode(),
-                invoiceEntity.getCustomerName(),
-                invoiceEntity.getCustomerEmail(),
-                invoiceEntity.getCustomerPhoneNumber(),
-                invoiceEntity.getCustomerAddress(),
-                true,
-                cartItemConverter.toDTO(invoiceEntity.getCartItem()),
-                        invoiceEntity.getCustomer().getUsername() );
-
-    }
-
-
 
     public static String generateInvoiceCode() {
         String currentDate = DATE_FORMAT.format(new Date());
@@ -56,5 +29,34 @@ public class InvoiceConverter {
 
         String invoiceCode = PREFIX + currentDate + "-" + formattedNumber;
         return invoiceCode;
+    }
+
+    public Invoice toEntity(InvoiceDTO invoiceDTO) {
+        return new Invoice(
+                generateInvoiceCode(),
+                invoiceDTO.getCustomerName(),
+                invoiceDTO.getCustomerEmail(),
+                invoiceDTO.getCustomerPhoneNumber(),
+                invoiceDTO.getCustomerAddress(),
+                true,
+                cartItemConverter.toEntity(invoiceDTO.getCartItem()),
+                userRepository.findOneByUsername(invoiceDTO.getCustomerUsername()),
+                invoiceDTO.getInvoiceStatus()
+        );
+    }
+
+    public InvoiceDTO toDTO(Invoice invoiceEntity) {
+        return new InvoiceDTO(
+                invoiceEntity.getId(),
+                invoiceEntity.getCode(),
+                invoiceEntity.getCustomerName(),
+                invoiceEntity.getCustomerEmail(),
+                invoiceEntity.getCustomerPhoneNumber(),
+                invoiceEntity.getCustomerAddress(),
+                true,
+                cartItemConverter.toDTO(invoiceEntity.getCartItem()),
+                invoiceEntity.getCustomer().getUsername(),
+                invoiceEntity.getInvoiceStatus());
+
     }
 }

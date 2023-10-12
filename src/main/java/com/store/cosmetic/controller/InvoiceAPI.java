@@ -1,25 +1,35 @@
 package com.store.cosmetic.controller;
 
-import com.store.cosmetic.dto.ItemDTO;
-import com.store.cosmetic.dto.NewItemDTO;
 import com.store.cosmetic.dto.invoice.InvoiceDTO;
 import com.store.cosmetic.exception.helper.Result;
 import com.store.cosmetic.exception.helper.StatusCode;
 import com.store.cosmetic.services.InvoiceService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class InvoiceAPI {
     private final InvoiceService invoiceService;
+
     @PostMapping("/payment")
     private Result payment(@RequestBody InvoiceDTO invoiceDTO) {
         InvoiceDTO savedInvoice = invoiceService.payment(invoiceDTO);
-        return new Result(true, StatusCode.SUCCESS, "Transfer success", invoiceDTO);
+        return new Result(true, StatusCode.SUCCESS, "Payment success", invoiceDTO);
+    }
+
+    @GetMapping("/getSomeInvoice/{id}")
+    private Result getSomeInvoice(@PathVariable("id") Long id) {
+        List<InvoiceDTO> listInvoice = invoiceService.getSomeInvoice(id);
+        return new Result(true, StatusCode.SUCCESS, "Get invoices success", listInvoice);
+    }
+
+    @GetMapping("/invoice/{code}")
+    private Result searchInvoiceByCode(@PathVariable("code") String code) {
+        InvoiceDTO searchedInvoice = invoiceService.searchInvoiceByCode(code);
+        return new Result(true, StatusCode.SUCCESS, "Search invoices success", searchedInvoice);
     }
 }

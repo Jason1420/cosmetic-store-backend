@@ -1,6 +1,5 @@
 package com.store.cosmetic.dto.invoice;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,10 +15,11 @@ public class InvoiceDTO {
     private Boolean status;
     private CartItemDTO cartItem;
     private String customerUsername;
+    private String invoiceStatus;
 
     public InvoiceDTO(Long id, String code, String customerName, String customerEmail, String customerPhoneNumber,
                       String customerAddress, Boolean status, CartItemDTO cartItem,
-                      String customerUsername) {
+                      String customerUsername, String invoiceStatus) {
         this.id = id;
         this.code = code;
         this.customerName = customerName;
@@ -29,5 +29,6 @@ public class InvoiceDTO {
         this.status = status;
         this.cartItem = cartItem;
         this.customerUsername = customerUsername;
+        this.invoiceStatus = invoiceStatus;
     }
 }
