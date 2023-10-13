@@ -4,6 +4,7 @@ import com.store.cosmetic.converter.InvoiceConverter;
 import com.store.cosmetic.dto.invoice.InvoiceDTO;
 import com.store.cosmetic.email.EmailServiceImp;
 import com.store.cosmetic.entity.invoice.Invoice;
+import com.store.cosmetic.entity.invoice.InvoiceStatus;
 import com.store.cosmetic.repository.InvoiceItemRepository;
 import com.store.cosmetic.repository.InvoiceRepository;
 import lombok.AllArgsConstructor;
@@ -71,5 +72,16 @@ public class InvoiceService {
                 map(invoiceConverter::toDTO).collect(Collectors.toList()).get(0);
         return returnDTO;
 
+    }
+
+    public InvoiceDTO cancelInvoiceByCode(String code) {
+        List<Invoice> searchedInvoice = invoiceRepository.findOneByCode(code);
+        List<Invoice> cancelInvoice = searchedInvoice.stream().map(item -> {
+            item.setInvoiceStatus(InvoiceStatus.CANCELED);
+            invoiceRepository.save(item);
+            return item;
+        }).collect(Collectors.toList());
+        InvoiceDTO returnDTO = invoiceConverter.toDTO(cancelInvoice.get(0));
+        return returnDTO;
     }
 }

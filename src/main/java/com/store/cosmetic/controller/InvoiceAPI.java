@@ -32,4 +32,10 @@ public class InvoiceAPI {
         InvoiceDTO searchedInvoice = invoiceService.searchInvoiceByCode(code);
         return new Result(true, StatusCode.SUCCESS, "Search invoices success", searchedInvoice);
     }
+
+    @PutMapping("/invoice/{code}")
+    private Result cancelInvoiceByCode(@PathVariable("code") String code) {
+        InvoiceDTO searchedInvoice = invoiceService.cancelInvoiceByCode(code);
+        return new Result(true, StatusCode.SUCCESS, "Cancel invoices success", searchedInvoice);
+    }
 }
