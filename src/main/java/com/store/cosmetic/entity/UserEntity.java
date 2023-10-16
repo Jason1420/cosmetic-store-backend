@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_migration")
 @Data
 @NoArgsConstructor
 public class UserEntity {

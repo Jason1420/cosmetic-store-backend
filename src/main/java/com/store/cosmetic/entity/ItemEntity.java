@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -42,6 +41,7 @@ public class ItemEntity {
     @OneToMany(mappedBy = "item")
     @JsonIgnore
     private List<InvoiceItem> items;
+
     public ItemEntity(Long id, String name, BrandEntity brand, TypeEntity type,
                       Double price, byte[] image, String description, StatusEntity status) {
         this.id = id;
