@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://db.yizcrcjsrtxxqwagvvvm.supabase.co:5432/postgres?allowPublicKeyRetrieval=true&useSSL=true&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbc CompliantTruncation=false
+    url: jdbc:postgresql://db.yizcrcjsrtxxqwagvvvm.supabase.co:5432/cosmetic?allowPublicKeyRetrieval=true&useSSL=true&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbc CompliantTruncation=false
     username: postgres
     password: cosmetic-store@123
 
