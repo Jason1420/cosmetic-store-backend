@@ -38,7 +38,7 @@ public class AuthAPI {
 
     @PostMapping("/log-out")
     public Result logout() {
-        jwtGenerator.resetCookie();
+//        jwtGenerator.resetCookie();
         return new Result(true, StatusCode.SUCCESS, "logout success");
     }
 

@@ -55,9 +55,9 @@ public class JwtGenerator {
         cookie.setMaxAge(60 * 60 * 24);
         cookie.setHttpOnly(true);
         httpServletResponse.addCookie(cookie);
-        Customer customerInfo = customerRepository.findOneByUserId(entity.getId()) ;
+        Customer customerInfo = customerRepository.findOneByUserId(entity.getId());
         return new AuthResponseDTO(accessToken, userConverter.toDtoAfterLogin((entity))
-                ,customerConverter.toDTO(customerInfo));
+                , customerConverter.toDTO(customerInfo));
     }
 
     public AuthResponseDTO refreshToken(String refreshToken) {
@@ -72,7 +72,7 @@ public class JwtGenerator {
                     .setExpiration(expiredDate)
                     .signWith(getSignInKey(JwtConstant.JWT_SECRET), SignatureAlgorithm.HS256)
                     .compact();
-            Customer customerInfo = customerRepository.findOneByUserId(entity.getId()) ;
+            Customer customerInfo = customerRepository.findOneByUserId(entity.getId());
             return new AuthResponseDTO(accessToken, userConverter.toDtoAfterLogin((entity)),
                     customerConverter.toDTO(customerInfo));
         } else {
@@ -104,9 +104,10 @@ public class JwtGenerator {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-    public void resetCookie(){
-        Cookie deleteCookie = new Cookie("refreshToken", null);
-        deleteCookie.setMaxAge(0);
-        httpServletResponse.addCookie(deleteCookie);
+
+    public void resetCookie() {
+//        Cookie deleteCookie = new Cookie("refreshToken", null);
+//        deleteCookie.setMaxAge(0);
+//        httpServletResponse.addCookie(deleteCookie);
     }
 }
