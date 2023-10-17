@@ -19,8 +19,8 @@ spring:
 mailServer:
   host: smtp.gmail.com
   port: 587
-  username: cosmetic_store@gmail.com
-  password: 123456
+  username: my.cosmetic.store2023@gmail.com
+  password: bflw bvlz pcri dycs
   protocol: smtp
   isSSL: false
   #spring.mailServer.isSSL=false
