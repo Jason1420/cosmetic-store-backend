@@ -27,7 +27,7 @@ public class ItemEntity {
 
 
     private Double price;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "BLOB")
     @Lob
     private byte[] image;
     private String mimeData;

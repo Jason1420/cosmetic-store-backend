@@ -2,9 +2,9 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://db.yizcrcjsrtxxqwagvvvm.supabase.co:5432/postgres?allowPublicKeyRetrieval=true&useSSL=true&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbc CompliantTruncation=false
-    username: postgres
-    password: cosmetic-store@123
+    url: jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12653917?allowPublicKeyRetrieval=true&useSSL=true&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbc CompliantTruncation=false
+    username: sql12653917
+    password: gPKBFpEnqb
 
   jpa:
     hibernate:
@@ -13,8 +13,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
     #  Email config
 mailServer:
   host: smtp.gmail.com
