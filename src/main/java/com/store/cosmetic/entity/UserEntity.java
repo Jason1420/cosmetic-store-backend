@@ -34,7 +34,7 @@ public class UserEntity {
     @JsonIgnore
     private Set<Invoice> invoices;
 
-    @OneToOne(mappedBy = "users")
+    @OneToOne(mappedBy = "user")
     @JsonIgnore
     private Customer customer;
 
