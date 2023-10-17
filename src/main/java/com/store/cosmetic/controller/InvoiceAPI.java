@@ -1,6 +1,7 @@
 package com.store.cosmetic.controller;
 
 import com.store.cosmetic.dto.invoice.InvoiceDTO;
+import com.store.cosmetic.email.EmailServiceImp;
 import com.store.cosmetic.exception.helper.Result;
 import com.store.cosmetic.exception.helper.StatusCode;
 import com.store.cosmetic.services.InvoiceService;
@@ -14,11 +15,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InvoiceAPI {
     private final InvoiceService invoiceService;
+    private final EmailServiceImp emailServiceImp;
 
     @PostMapping("/payment")
     private Result payment(@RequestBody InvoiceDTO invoiceDTO) {
         InvoiceDTO savedInvoice = invoiceService.payment(invoiceDTO);
-        return new Result(true, StatusCode.SUCCESS, "Payment success", invoiceDTO);
+        return new Result(true, StatusCode.SUCCESS, "Payment success", savedInvoice);
     }
 
     @GetMapping("/getSomeInvoice/{id}")
@@ -37,5 +39,13 @@ public class InvoiceAPI {
     private Result cancelInvoiceByCode(@PathVariable("code") String code) {
         InvoiceDTO searchedInvoice = invoiceService.cancelInvoiceByCode(code);
         return new Result(true, StatusCode.SUCCESS, "Cancel invoices success", searchedInvoice);
+    }
+
+    @GetMapping("/testMail")
+    private Result testMail() {
+        emailServiceImp.sendSimpleEmail("blqckhol3@gmail.com",
+                "This is email body",
+                "This is email subject");
+        return new Result(true, StatusCode.SUCCESS, "send mail success");
     }
 }

@@ -16,19 +16,14 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
     #  Email config
-mailServer:
-  host: smtp.gmail.com
-  port: 587
-  username: my.cosmetic.store2023@gmail.com
-  password: bflw bvlz pcri dycs
-  protocol: smtp
-  isSSL: false
-  #spring.mailServer.isSSL=false
-mail:
-  properties:
-    mail:
-      smtp:
-        auth: true
-        starttls:
-          enable: true
-          required: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: my.cosmetic.store2023@gmail.com
+    password: tlkuhzkbrhamtgtk
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

@@ -5,6 +5,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -25,6 +26,19 @@ public class EmailServiceImp implements EmailSender {
 
     public EmailServiceImp() {
         this.mailSender = new JavaMailSenderImpl();
+    }
+
+    public void sendSimpleEmail(String toEmail,
+                                String subject,
+                                String body
+    ) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("my.cosmetic.store2023@gmail.com");
+        message.setTo(toEmail);
+        message.setText(body);
+        message.setSubject(subject);
+        mailSender.send(message);
+        System.out.println("Mail Send...");
     }
 
     public void generateEmail(Invoice invoice, String password) {
@@ -70,7 +84,7 @@ public class EmailServiceImp implements EmailSender {
             helper.setText(email, true);
             helper.setTo(to);
             helper.setSubject("Đặt hàng thành công");
-            helper.setFrom("cosmetic_store@gmail.com");
+            helper.setFrom("my.cosmetic.store2023@gmail.com");
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
             LOGGER.error("failed to send email", e);
