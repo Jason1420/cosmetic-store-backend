@@ -83,13 +83,14 @@ public class SecurityConfig {
 
         mailSender.setUsername("my.cosmetic.store2023@gmail.com");
         mailSender.setPassword("tlkuhzkbrhamtgtk");
-        
+
         mailSender.setDefaultEncoding("UTF-8");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.enable", "false");
         props.put("mail.debug", "true");
         return mailSender;
     }
