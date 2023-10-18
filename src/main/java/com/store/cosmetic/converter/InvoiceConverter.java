@@ -55,7 +55,7 @@ public class InvoiceConverter {
                 invoiceEntity.getCustomerAddress(),
                 true,
                 cartItemConverter.toDTO(invoiceEntity.getCartItem()),
-                invoiceEntity.getCustomer().getUsername(),
+                invoiceEntity.getCustomer() != null ? invoiceEntity.getCustomer().getUsername() : null,
                 invoiceEntity.getInvoiceStatus());
 
     }

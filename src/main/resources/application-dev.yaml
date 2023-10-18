@@ -1,0 +1,32 @@
+server:
+  port: 8080
+spring:
+  mailServer:
+    host: smtp.gmail.com
+    port: 587
+    username: my.cosmetic.store2023@gmail.com
+    password: tlkuhzkbrhamtgtk
+
+    protocol: smtp
+    isSSL: false
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/cosmetic_store?allowPublicKeyRetrieval=true&useSSL=true&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbc CompliantTruncation=false
+    username: root
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+
