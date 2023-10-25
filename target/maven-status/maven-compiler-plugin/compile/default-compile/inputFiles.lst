@@ -43,6 +43,7 @@ D:\Evosolution\cosmetic-store\cosmetic\src\main\java\com\store\cosmetic\exceptio
 D:\Evosolution\cosmetic-store\cosmetic\src\main\java\com\store\cosmetic\dto\invoice\CartItemDTO.java
 D:\Evosolution\cosmetic-store\cosmetic\src\main\java\com\store\cosmetic\dto\TypeDTO.java
 D:\Evosolution\cosmetic-store\cosmetic\src\main\java\com\store\cosmetic\controller\ItemAPI.java
+D:\Evosolution\cosmetic-store\cosmetic\src\main\java\com\store\cosmetic\config\RedisConfig.java
 D:\Evosolution\cosmetic-store\cosmetic\src\main\java\com\store\cosmetic\exception\helper\StatusCode.java
 D:\Evosolution\cosmetic-store\cosmetic\src\main\java\com\store\cosmetic\entity\BrandEntity.java
 D:\Evosolution\cosmetic-store\cosmetic\src\main\java\com\store\cosmetic\entity\UserEntity.java

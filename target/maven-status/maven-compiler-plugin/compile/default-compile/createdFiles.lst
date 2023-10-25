@@ -24,6 +24,7 @@ com\store\cosmetic\dto\NewItemDTO.class
 com\store\cosmetic\entity\Customer.class
 com\store\cosmetic\dto\ItemDTO.class
 com\store\cosmetic\jwt\JwtAuthHandler.class
+com\store\cosmetic\config\RedisConfig.class
 com\store\cosmetic\jwt\JwtConstant.class
 com\store\cosmetic\CosmeticApplication.class
 com\store\cosmetic\repository\UserRepository.class
