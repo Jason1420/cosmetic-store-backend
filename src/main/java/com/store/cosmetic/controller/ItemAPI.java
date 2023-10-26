@@ -36,7 +36,7 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Get all items success", listItemRedis);
         }
         List<ItemDTO> listAllItem = itemService.getAllItems();
-        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(1));
+        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(3));
         return new Result(true, StatusCode.SUCCESS, "Get all items success", listAllItem);
     }
 
@@ -49,7 +49,7 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Get default items success", defaultDataRedis);
         }
         DefaultDataDTO defaultData = itemService.getDefaultData();
-        template.opsForValue().set("defaultData", defaultData, Duration.ofHours(1));
+        template.opsForValue().set("defaultData", defaultData, Duration.ofDays(7));
         return new Result(true, StatusCode.SUCCESS, "Get default data success", defaultData);
     }
 
@@ -62,7 +62,7 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Get one items success", itemRedis);
         }
         List<ItemDTO> listAllItem = itemService.getAllItems();
-        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(1));
+        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(3));
         ItemDTO itemRedis = listAllItem.stream().filter(item -> item.getId() == id).findFirst().orElse(null);
         return new Result(true, StatusCode.SUCCESS, "Get one item success", itemRedis);
     }
@@ -110,7 +110,7 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Search hot-deal items success", listItemRedis);
         }
         List<ItemDTO> listItem = itemService.searchHotDealItem(page);
-        template.opsForValue().set("hotdeal" + page, listItem, Duration.ofHours(1));
+        template.opsForValue().set("hotdeal" + page, listItem, Duration.ofDays(7));
         return new Result(true, StatusCode.SUCCESS, "Search hot-deal items success", listItem);
     }
 
@@ -124,7 +124,7 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Find all hot-deal items success", listItem);
         }
         List<ItemDTO> listAllItem = itemService.getAllItems();
-        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(1));
+        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(3));
         List<ItemDTO> listItem = listAllItem.stream().
                 filter(item -> item.getStatus().equals("Hot")).collect(Collectors.toList());
         return new Result(true, StatusCode.SUCCESS, "Find all hot-deal items success", listItem);
@@ -138,7 +138,7 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Search new items success", listItemRedis);
         }
         List<ItemDTO> listItem = itemService.searchNewItem(page);
-        template.opsForValue().set("newItem" + page, listItem, Duration.ofHours(1));
+        template.opsForValue().set("newItem" + page, listItem, Duration.ofDays(7));
         return new Result(true, StatusCode.SUCCESS, "Search new items success", listItem);
     }
 
@@ -152,7 +152,7 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Find all new items success", listItem);
         }
         List<ItemDTO> listAllItem = itemService.getAllItems();
-        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(1));
+        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(3));
         List<ItemDTO> listItem = listAllItem.stream().
                 filter(item -> item.getStatus().equals("New")).collect(Collectors.toList());
         return new Result(true, StatusCode.SUCCESS, "Find all new items success", listItem);
@@ -167,7 +167,7 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Search best sellers success", listItemRedis);
         }
         List<ItemDTO> listItem = itemService.searchBestSellers(page);
-        template.opsForValue().set("bestSellers" + page, listItem, Duration.ofHours(1));
+        template.opsForValue().set("bestSellers" + page, listItem, Duration.ofDays(7));
         return new Result(true, StatusCode.SUCCESS, "Search best sellers success", listItem);
     }
 
@@ -181,7 +181,7 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Find all best sellers success", listItem);
         }
         List<ItemDTO> listAllItem = itemService.getAllItems();
-        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(1));
+        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(3));
         List<ItemDTO> listItem = listAllItem.stream().
                 filter(item -> item.getStatus().equals("Best")).collect(Collectors.toList());
         return new Result(true, StatusCode.SUCCESS, "Find all best sellers success", listItem);
@@ -196,9 +196,9 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Search best sellers success", listItemRedis);
         }
         List<ItemDTO> listItem = itemService.searchGift(page);
-        template.opsForValue().set("gift" + page, listItem, Duration.ofHours(1));
+        template.opsForValue().set("gift" + page, listItem, Duration.ofDays(7));
         return new Result(true, StatusCode.SUCCESS, "Search best sellers success", listItem);
-        
+
     }
 
     @GetMapping("/all-gift")
@@ -211,7 +211,7 @@ public class ItemAPI {
             return new Result(true, StatusCode.SUCCESS, "Find all gift success", listItem);
         }
         List<ItemDTO> listAllItem = itemService.getAllItems();
-        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(1));
+        template.opsForValue().set("allItem", listAllItem, Duration.ofHours(3));
         List<ItemDTO> listItem = listAllItem.stream().
                 filter(item -> item.getStatus().equals("Gift")).collect(Collectors.toList());
         return new Result(true, StatusCode.SUCCESS, "Find all gift success", listItem);

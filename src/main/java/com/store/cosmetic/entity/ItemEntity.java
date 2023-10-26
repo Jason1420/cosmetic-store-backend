@@ -10,7 +10,8 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "item")
+@Table(name = "item",
+        indexes = {@Index(name = "idx_item_status", columnList = "status")})
 @Data
 @NoArgsConstructor
 public class ItemEntity {
