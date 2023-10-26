@@ -32,7 +32,7 @@ public class DefaultDataAPI {
             return new Result(true, StatusCode.SUCCESS, "Get all brands success", listItemRedis);
         }
         List<BrandEntity> allBrand = brandService.getAllBrand();
-        template.opsForValue().set("allBrands", allBrand, Duration.ofHours(24));
+        template.opsForValue().set("allBrands", allBrand, Duration.ofDays(7));
         return new Result(true, StatusCode.SUCCESS, "Get all brands success", allBrand);
     }
 
@@ -44,7 +44,7 @@ public class DefaultDataAPI {
             return new Result(true, StatusCode.SUCCESS, "Get all types success", listItemRedis);
         }
         List<TypeEntity> allType = typeService.getAllType();
-        template.opsForValue().set("allType", allType, Duration.ofHours(24));
+        template.opsForValue().set("allType", allType, Duration.ofDays(7));
         return new Result(true, StatusCode.SUCCESS, "Get all types success", allType);
     }
 
