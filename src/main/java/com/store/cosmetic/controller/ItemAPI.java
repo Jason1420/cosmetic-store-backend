@@ -40,7 +40,6 @@ public class ItemAPI {
         return new Result(true, StatusCode.SUCCESS, "Get all items success", listAllItem);
     }
 
-
     @GetMapping("/getDefaultData")
     private Result getDefaultData() {
         boolean exists = template.hasKey("defaultData");
@@ -67,37 +66,62 @@ public class ItemAPI {
         return new Result(true, StatusCode.SUCCESS, "Get one item success", itemRedis);
     }
 
-//    @GetMapping("/search")
-//    private Result searchItemByBrand(@RequestParam("brands") List<String> brands){
-//        List<ItemDTO> listItem = itemService.searchByBrand(brands);
-//        return new Result(true, StatusCode.SUCCESS, "Search by brand success",listItem);
-//    }
 
     @GetMapping("/search")
     private Result searchItemByBrandAndTypePagination(@RequestParam("typeId") Long typeId,
                                                       @RequestParam(value = "brands", required = false) List<String> brands,
                                                       @RequestParam("page") int page) {
+        String redisKey = "searchItemByBrandAndTypePagination" + typeId + brands.toString() + page;
+        boolean exists = template.hasKey(redisKey);
+        if (exists) {
+            List<ItemDTO> listItemRedis = (List<ItemDTO>) template.opsForValue().get(redisKey);
+            return new Result(true, StatusCode.SUCCESS, "Search by type and brand success", listItemRedis);
+        }
         List<ItemDTO> listItem = itemService.searchByTypeAndBrand(typeId, brands, page);
+        template.opsForValue().set(redisKey, listItem, Duration.ofHours(3));
         return new Result(true, StatusCode.SUCCESS, "Search by type and brand success", listItem);
     }
 
     @GetMapping("/count-item-by-typeid-brands")
     private Result countItemByBrandAndTypePagination(@RequestParam("typeId") Long typeId,
                                                      @RequestParam(value = "brands", required = false) List<String> brands) {
+        String redisKey = "countItemByBrandAndTypePagination" + typeId + brands.toString();
+        boolean exists = template.hasKey(redisKey);
+        if (exists) {
+            Long quantityRedis = (Long) template.opsForValue().get(redisKey);
+            return new Result(true, StatusCode.SUCCESS, "Count success", quantityRedis);
+        }
         Long quantity = itemService.countItemByBrandAndTypePagination(typeId, brands);
+        template.opsForValue().set(redisKey, quantity, Duration.ofHours(3));
         return new Result(true, StatusCode.SUCCESS, "Count success", quantity);
     }
 
     @GetMapping("/count-item-by-typeid")
     private Result countItemByTypeName(@RequestParam("typeId") Long typeId) {
+
+        String redisKey = "countItemByTypeName" + typeId;
+        boolean exists = template.hasKey(redisKey);
+        if (exists) {
+            Long quantityRedis = (Long) template.opsForValue().get(redisKey);
+            return new Result(true, StatusCode.SUCCESS, "Count success", quantityRedis);
+        }
         Long quantity = itemService.countItemByTypeName(typeId);
+        template.opsForValue().set(redisKey, quantity, Duration.ofHours(3));
         return new Result(true, StatusCode.SUCCESS, "Count success", quantity);
     }
 
     @GetMapping("/search/{typeId}")
     private Result searchItemByTypePagination(@PathVariable("typeId") Long typeId,
                                               @RequestParam("page") int page) {
+
+        String redisKey = "searchItemByTypePagination" + typeId + page;
+        boolean exists = template.hasKey(redisKey);
+        if (exists) {
+            List<ItemDTO> listItemRedis = (List<ItemDTO>) template.opsForValue().get(redisKey);
+            return new Result(true, StatusCode.SUCCESS, "Search by type success", listItemRedis);
+        }
         List<ItemDTO> listItem = itemService.searchByTypeId(typeId, page);
+        template.opsForValue().set(redisKey, listItem, Duration.ofHours(3));
         return new Result(true, StatusCode.SUCCESS, "Search by type success", listItem);
     }
 
