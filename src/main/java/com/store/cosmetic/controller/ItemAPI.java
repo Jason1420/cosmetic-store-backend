@@ -88,7 +88,7 @@ public class ItemAPI {
         String redisKey = "countItemByBrandAndTypePagination" + typeId + brands.toString();
         boolean exists = template.hasKey(redisKey);
         if (exists) {
-            Long quantityRedis = (Long) template.opsForValue().get(redisKey);
+            Long quantityRedis = Long.parseLong(String.valueOf(template.opsForValue().get(redisKey)));
             return new Result(true, StatusCode.SUCCESS, "Count success", quantityRedis);
         }
         Long quantity = itemService.countItemByBrandAndTypePagination(typeId, brands);
@@ -102,7 +102,7 @@ public class ItemAPI {
         String redisKey = "countItemByTypeName" + typeId;
         boolean exists = template.hasKey(redisKey);
         if (exists) {
-            Long quantityRedis = (Long) template.opsForValue().get(redisKey);
+            Long quantityRedis = Long.parseLong(String.valueOf(template.opsForValue().get(redisKey)));
             return new Result(true, StatusCode.SUCCESS, "Count success", quantityRedis);
         }
         Long quantity = itemService.countItemByTypeName(typeId);
