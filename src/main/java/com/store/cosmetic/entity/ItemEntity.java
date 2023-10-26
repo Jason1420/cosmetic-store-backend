@@ -11,7 +11,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "item",
-        indexes = {@Index(name = "idx_item_status", columnList = "status")})
+        indexes = {@Index(name = "idx_item_status", columnList = "status"),
+                @Index(name = "idx_item_type", columnList = "type")})
 @Data
 @NoArgsConstructor
 public class ItemEntity {
