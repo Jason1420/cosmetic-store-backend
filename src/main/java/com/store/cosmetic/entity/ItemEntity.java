@@ -29,9 +29,8 @@ public class ItemEntity {
 
 
     private Double price;
-    @Column(columnDefinition = "bytea")
-    @Lob
-    private byte[] image;
+    @Column(length = 10485760)
+    private String image;
     private String mimeData;
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -45,7 +44,7 @@ public class ItemEntity {
     private List<InvoiceItem> items;
 
     public ItemEntity(Long id, String name, BrandEntity brand, TypeEntity type,
-                      Double price, byte[] image, String description, StatusEntity status) {
+                      Double price, String image, String description, StatusEntity status) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -57,7 +56,7 @@ public class ItemEntity {
     }
 
     public ItemEntity(String name, BrandEntity brand, TypeEntity type,
-                      Double price, byte[] image, String mimeData, String description,
+                      Double price, String image, String mimeData, String description,
                       StatusEntity status) {
         this.name = name;
         this.brand = brand;

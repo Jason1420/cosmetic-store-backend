@@ -27,7 +27,8 @@ public class ItemConverter {
                 itemEntity.getBrand().getName(),
                 itemEntity.getType().getName(),
                 itemEntity.getPrice(),
-                changeBlobToUrlData(itemEntity.getImage(), itemEntity.getMimeData()),
+//                changeBlobToUrlData(itemEntity.getImage(), itemEntity.getMimeData()),
+                itemEntity.getImage(),
                 itemEntity.getDescription(),
                 itemEntity.getStatus().getName());
     }
@@ -42,7 +43,8 @@ public class ItemConverter {
                 brand,
                 type,
                 itemDTO.getPrice(),
-                changeURLdataToBlob(itemDTO.getImage()),
+//                changeURLdataToBlob(itemDTO.getImage()),
+                itemDTO.getImage(),
                 itemDTO.getDescription(),
                 status
         );
@@ -56,7 +58,8 @@ public class ItemConverter {
                 brand,
                 type,
                 newItemDTO.getPrice(),
-                changeURLdataToBlob(newItemDTO.getImage()),
+//                changeURLdataToBlob(newItemDTO.getImage()),
+                newItemDTO.getImage(),
                 getMIMEData(newItemDTO.getImage()),
                 newItemDTO.getDescription(),
                 status);
