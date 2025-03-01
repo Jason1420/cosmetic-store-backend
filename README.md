@@ -13,10 +13,10 @@ This project serves as the backend for the Cosmetic Store e-commerce platform. I
 
 ## Technologies Used
 
-- **Node.js**: JavaScript runtime for building scalable backend services.
-- **Express.js**: Lightweight web framework for creating REST APIs.
-- **MongoDB**: NoSQL database for efficient data storage.
-- **Mongoose**: ODM (Object Data Modeling) library for MongoDB.
+- **Java**: Primary programming language for backend development.
+- **Spring Boot**: Framework for building RESTful APIs and microservices.
+- **PostgreSQL**: Relational database for storing application data.
+- **Spring Security**: For authentication and authorization.
 - **JWT (JSON Web Token)**: Secure authentication mechanism.
 - **Cloudinary**: Image storage and management.
 - **Stripe**: Payment gateway integration.
@@ -35,42 +35,40 @@ To set up the backend locally:
    cd cosmetic-store-backend
    ```
 
-3. **Install dependencies**:
-   ```bash
-   npm install
+3. **Set up environment variables**:
+   Create an `application.properties` file in the `src/main/resources` directory and configure the following:
+   ```properties
+   server.port=8080
+   spring.datasource.url=jdbc:postgresql://localhost:5432/your_database
+   spring.datasource.username=your_db_username
+   spring.datasource.password=your_db_password
+   spring.jpa.hibernate.ddl-auto=update
+   jwt.secret=your_jwt_secret
+   cloudinary.api_key=your_cloudinary_api_key
+   stripe.secret_key=your_stripe_secret_key
    ```
 
-4. **Set up environment variables**:
-   Create a `.env` file in the root directory and configure the following:
-   ```env
-   PORT=5000
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
-   CLOUDINARY_API_KEY=your_cloudinary_api_key
-   STRIPE_SECRET_KEY=your_stripe_secret_key
-   ```
-
-5. **Start the server**:
+4. **Build and run the application**:
    ```bash
-   npm start
+   ./mvnw spring-boot:run
    ```
-   The backend will run on `http://localhost:5000`.
+   The backend will run on `http://localhost:8080`.
 
 ## API Endpoints
 
 | Method | Endpoint               | Description               |
 |--------|------------------------|---------------------------|
 | GET    | /api/products          | Get all products         |
-| GET    | /api/products/:id      | Get a single product     |
+| GET    | /api/products/{id}      | Get a single product     |
 | POST   | /api/products          | Create a new product (Admin) |
-| PUT    | /api/products/:id      | Update product (Admin)   |
-| DELETE | /api/products/:id      | Delete product (Admin)   |
+| PUT    | /api/products/{id}      | Update product (Admin)   |
+| DELETE | /api/products/{id}      | Delete product (Admin)   |
 | POST   | /api/users/register    | User registration        |
 | POST   | /api/users/login       | User login               |
 | GET    | /api/users/profile     | Get user profile (Auth)  |
 | PUT    | /api/users/profile     | Update profile (Auth)    |
 | POST   | /api/orders            | Create a new order       |
-| GET    | /api/orders/:id        | Get order details        |
+| GET    | /api/orders/{id}        | Get order details        |
 
 ## Deployment
 
@@ -93,10 +91,11 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgements
 
-- **Express.js**: For building the RESTful API.
-- **MongoDB & Mongoose**: For database management.
-- **JWT**: For secure authentication.
+- **Spring Boot**: For building the RESTful API.
+- **PostgreSQL**: For database management.
+- **JWT & Spring Security**: For secure authentication.
 - **Cloudinary**: For handling image uploads.
 - **Stripe**: For payment processing.
 
 For more details, please visit the [repository](https://github.com/Jason1420/cosmetic-store-backend).
+
